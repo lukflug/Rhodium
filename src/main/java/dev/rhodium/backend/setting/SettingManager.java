@@ -50,4 +50,10 @@ public class SettingManager {
     public Setting getSettingByConfigName(String configName) {
         return getSettings().stream().filter(setting -> setting.getConfigName() == configName).findFirst().orElse(null);
     }
+
+    public ArrayList<Setting> getSettingByType(Type type) {
+        ArrayList<Setting> settings = new ArrayList<>();
+        settings.addAll(getSettings().stream().filter(setting -> setting.getType() == type).collect(Collectors.toList()));
+        return settings;
+    }
 }

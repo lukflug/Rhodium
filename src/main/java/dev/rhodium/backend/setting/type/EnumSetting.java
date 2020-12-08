@@ -12,12 +12,14 @@ public class EnumSetting extends Setting {
 
     private Enum value;
     private final Enum defaultValue;
+    private Enum[] values;
 
-    public EnumSetting(String name, String description, Module module, Enum value) {
+    public EnumSetting(String name, String description, Module module, Enum value, Enum[] values) {
         super(Type.ENUM, name, description, module);
 
         this.value = value;
         this.defaultValue = value;
+        this.values = values;
     }
 
     public Enum getValue() {
@@ -30,5 +32,13 @@ public class EnumSetting extends Setting {
 
     public Enum getDefaultValue() {
         return this.defaultValue;
+    }
+
+    public Enum[] getValues() {
+        return this.values;
+    }
+
+    public void setValues(Enum[] values) {
+        this.values = values;
     }
 }

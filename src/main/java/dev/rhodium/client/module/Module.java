@@ -113,8 +113,8 @@ public abstract class Module {
         return setting;
     }
 
-    protected EnumSetting registerEnum(String name, String description, Enum value) {
-        EnumSetting setting = new EnumSetting(name, description, this, value);
+    protected EnumSetting registerEnum(String name, String description, Enum value, Enum[] values) {
+        EnumSetting setting = new EnumSetting(name, description, this, value, values);
         Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
