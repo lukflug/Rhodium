@@ -2,6 +2,7 @@ package dev.rhodium.client.module;
 
 import dev.rhodium.Rhodium;
 import dev.rhodium.backend.setting.type.*;
+import net.minecraft.client.MinecraftClient;
 
 import java.awt.*;
 
@@ -10,6 +11,8 @@ import java.awt.*;
  */
 
 public abstract class Module {
+
+    protected final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final String name;
     private final Category category;

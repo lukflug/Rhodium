@@ -40,6 +40,16 @@ public class ModuleManager {
         return getModules().stream().filter(module -> module.getName() == name).findFirst().orElse(null);
     }
 
+    public boolean isModuleEnabled(Module module) {
+        return module.isEnabled();
+    }
+
+    public void onUpdate() {
+        modules.stream().filter(Module::isEnabled).forEach(Module::onUpdate);
+    }
+
+    //todo: onGuiRender and onWorldRender...need to set up a basic clickgui and events first
+
     public ModuleManager() {
         modules = new ArrayList<>();
 

@@ -1,6 +1,7 @@
 package dev.rhodium;
 
 import dev.rhodium.backend.setting.SettingManager;
+import dev.rhodium.client.command.CommandManager;
 import dev.rhodium.client.module.ModuleManager;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +25,7 @@ public class Rhodium implements ModInitializer {
 
     public ModuleManager moduleManager;
     public SettingManager settingManager;
+    public CommandManager commandManager;
 
     @Override
     public void onInitialize() {
@@ -31,5 +33,6 @@ public class Rhodium implements ModInitializer {
 
         settingManager = new SettingManager();
         moduleManager = new ModuleManager();
+        commandManager = new CommandManager();
     }
 }
