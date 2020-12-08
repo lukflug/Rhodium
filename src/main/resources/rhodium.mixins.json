@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.rhodium.mixin",
+  "package": "dev.rhodium.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
