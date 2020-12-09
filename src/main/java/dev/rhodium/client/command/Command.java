@@ -31,4 +31,8 @@ public abstract class Command {
     public String getDescription() {
         return this.description;
     }
+
+    public void onCommand(String[] args) {
+
+    }
 }

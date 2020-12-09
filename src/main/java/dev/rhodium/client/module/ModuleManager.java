@@ -50,6 +50,14 @@ public class ModuleManager {
 
     //todo: onGuiRender and onWorldRender...need to set up a basic clickgui and events first
 
+    public void onGuiRender() {
+
+    }
+
+    public void onWorldRender() {
+
+    }
+
     public ModuleManager() {
         modules = new ArrayList<>();
 
