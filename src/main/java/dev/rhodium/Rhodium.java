@@ -12,7 +12,6 @@ import org.apache.logging.log4j.Logger;
  */
 
 public class Rhodium implements ModInitializer {
-
     public static String modName = "Rhodium";
     public static String modVersion = "v1.0.0";
 

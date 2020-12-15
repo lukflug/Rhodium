@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
  */
 
 public class SettingManager {
-
-    public ArrayList<Setting> settings;
+    public ArrayList<Setting<?>> settings;
 
     public SettingManager() {
         this.settings = new ArrayList<>();
@@ -20,40 +19,33 @@ public class SettingManager {
         Rhodium.LOGGER.info("Loaded SettingManager!");
     }
 
-    public ArrayList<Setting> getSettings() {
+    public ArrayList<Setting<?>> getSettings() {
         return this.settings;
     }
 
-    public ArrayList<Setting> getSettingsForModule(Module module) {
-        ArrayList<Setting> settings = new ArrayList<>();
-        settings.addAll(getSettings().stream().filter(setting -> setting.getModule() == module).collect(Collectors.toList()));
-
-        return settings;
+    public ArrayList<Setting<?>> getSettingsForModule(Module module) {
+        return settings.stream().filter(it -> it.getModule().getClass().isAssignableFrom(module.getClass())).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public void addSetting(Setting setting) {
-        if (!getSettings().contains(setting)) {
+    public void addSetting(Setting<?> setting) {
+        if (!settings.contains(setting)) {
             this.settings.add(setting);
         }
     }
 
-    public void removeSetting(Setting setting) {
-        if (getSettings().contains(setting)) {
-            this.settings.remove(setting);
-        }
+    public void removeSetting(Setting<?> setting) {
+        this.settings.remove(setting);
     }
 
-    public Setting getSettingByName(String name) {
-        return getSettings().stream().filter(setting -> setting.getName() == name).findFirst().orElse(null);
+    public Setting<?> getSettingByName(String name) {
+        return settings.stream().filter(setting -> setting.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public Setting getSettingByConfigName(String configName) {
-        return getSettings().stream().filter(setting -> setting.getConfigName() == configName).findFirst().orElse(null);
+    public Setting<?> getSettingByConfigName(String configName) {
+        return settings.stream().filter(setting -> setting.getConfigName().equals(configName)).findFirst().orElse(null);
     }
 
-    public ArrayList<Setting> getSettingByType(Type type) {
-        ArrayList<Setting> settings = new ArrayList<>();
-        settings.addAll(getSettings().stream().filter(setting -> setting.getType() == type).collect(Collectors.toList()));
-        return settings;
+    public ArrayList<Setting<?>> getSettingByType(Type type) {
+        return settings.stream().filter(setting -> setting.getType() == type).collect(Collectors.toCollection(ArrayList::new));
     }
 }

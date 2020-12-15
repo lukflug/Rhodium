@@ -8,13 +8,12 @@ import dev.rhodium.client.module.Module;
  * @author Hoosiers 12/07/2020
  */
 
-public class KeybindSetting extends Setting {
-
+public class KeybindSetting extends Setting<Integer> {
     private int key;
     private final int defaultKey;
 
-    public KeybindSetting(String name, String description, Module module, int key) {
-        super(Type.KEYBIND, name, description, module);
+    public KeybindSetting(int key, String name, String description, Module module) {
+        super(key, name, description, module, Type.KEYBIND);
 
         this.key = key;
         this.defaultKey = key;

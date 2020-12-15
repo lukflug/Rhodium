@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
  */
 
 public class ModuleManager {
-
     public ArrayList<Module> modules;
 
     public ArrayList<Module> getModules() {
@@ -18,26 +17,21 @@ public class ModuleManager {
     }
 
     public ArrayList<Module> getModulesByCategory(Category category) {
-        ArrayList<Module> modules = new ArrayList<>();
-        modules.addAll(getModules().stream().filter(module -> module.getCategory() == category).collect(Collectors.toList()));
-
-        return modules;
+        return modules.stream().filter(module -> module.getCategory() == category).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void addModule(Module module) {
-        if (!getModules().contains(module)) {
+        if (!modules.contains(module)) {
             this.modules.add(module);
         }
     }
 
     public void removeModule(Module module) {
-        if (getModules().contains(module)) {
-            this.modules.remove(module);
-        }
+        this.modules.remove(module);
     }
 
     public Module getModuleByName(String name) {
-        return getModules().stream().filter(module -> module.getName() == name).findFirst().orElse(null);
+        return modules.stream().filter(module -> module.getName().equals(name)).findFirst().orElse(null);
     }
 
     public boolean isModuleEnabled(Module module) {
@@ -51,11 +45,15 @@ public class ModuleManager {
     //todo: onGuiRender and onWorldRender...need to set up a basic clickgui and events first
 
     public void onGuiRender() {
-
+        for (Module module : modules) {
+            module.onGuiRender();
+        }
     }
 
     public void onWorldRender() {
-
+        for (Module module : modules) {
+            module.onWorldRender();
+        }
     }
 
     public ModuleManager() {
