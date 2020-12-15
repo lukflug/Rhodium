@@ -7,7 +7,6 @@ import net.minecraft.client.MinecraftClient;
  */
 
 public abstract class Command {
-
     protected final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final String name;
@@ -20,19 +19,17 @@ public abstract class Command {
         this.description = description;
     }
 
-    public String getName() {
+    public final String getName() {
         return this.name;
     }
 
-    public String[] getAlias() {
+    public final String[] getAlias() {
         return this.alias;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return this.description;
     }
 
-    public void onCommand(String[] args) {
-
-    }
+    public abstract void onCommand(String[] args);
 }

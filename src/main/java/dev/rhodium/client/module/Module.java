@@ -11,7 +11,6 @@ import java.awt.*;
  */
 
 public abstract class Module {
-
     protected final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final String name;
@@ -111,25 +110,26 @@ public abstract class Module {
     }
 
     protected DoubleSetting registerDouble(String name, String description, double value, double min, double max, boolean isLimited) {
-        DoubleSetting setting = new DoubleSetting(name, description, this, value, min, max, isLimited);
+        DoubleSetting setting = new DoubleSetting(value, name, description, this, min, max, isLimited);
         Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
 
-    protected EnumSetting registerEnum(String name, String description, Enum value, Enum[] values) {
-        EnumSetting setting = new EnumSetting(name, description, this, value, values);
+    protected <T extends Enum<T>> EnumSetting<T> registerEnum(T value, String name, String description) {
+        EnumSetting<T> setting = new EnumSetting<T>(value, name, description, this);
         Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
 
     protected IntegerSetting registerInteger(String name, String description, int value, int min, int max, boolean isLimited) {
-        IntegerSetting setting = new IntegerSetting(name, description, this, value, min, max, isLimited);
+        IntegerSetting setting = new IntegerSetting(value, name, description, this, min, max, isLimited);
         Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
 
     protected KeybindSetting registerKeybind(String name, String description, int value) {
-        KeybindSetting setting = new KeybindSetting(name, description, this, value);
+        KeybindSetting setting = new KeybindSetting(value, name, description, this);
+        Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
 }

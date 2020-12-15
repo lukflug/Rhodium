@@ -8,30 +8,17 @@ import dev.rhodium.client.module.Module;
  * @author Hoosiers 12/07/2020
  */
 
-public class DoubleSetting extends Setting {
-
-    private double value;
-    private final double defaultValue;
+public class DoubleSetting extends Setting<Double> {
     private final double min;
     private final double max;
     private final boolean isLimited;
 
-    public DoubleSetting(String name, String description, Module module, double value, double min, double max, boolean isLimited) {
-        super(Type.DOUBLE, name, description, module);
+    public DoubleSetting(double value, String name, String description, Module module, double min, double max, boolean isLimited) {
+        super(value, name, description, module, Type.DOUBLE);
 
-        this.value = value;
-        this.defaultValue = value;
         this.min = min;
         this.max = max;
         this.isLimited = isLimited;
-    }
-
-    public double getValue() {
-        return this.value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     public double getMin() {
@@ -40,10 +27,6 @@ public class DoubleSetting extends Setting {
 
     public double getMax() {
         return this.max;
-    }
-
-    public double getDefaultValue() {
-        return this.defaultValue;
     }
 
     public boolean isLimited() {
