@@ -1,16 +1,23 @@
 package dev.rhodium.client.module;
 
-import dev.rhodium.Rhodium;
-import dev.rhodium.backend.setting.type.*;
-import net.minecraft.client.MinecraftClient;
+import java.awt.Color;
 
-import java.awt.*;
+import com.lukflug.panelstudio.settings.Toggleable;
+
+import dev.rhodium.Rhodium;
+import dev.rhodium.backend.setting.type.BooleanSetting;
+import dev.rhodium.backend.setting.type.ColorSetting;
+import dev.rhodium.backend.setting.type.DoubleSetting;
+import dev.rhodium.backend.setting.type.EnumSetting;
+import dev.rhodium.backend.setting.type.IntegerSetting;
+import dev.rhodium.backend.setting.type.KeybindSetting;
+import net.minecraft.client.MinecraftClient;
 
 /**
  * @author Hoosiers 12/06/2020
  */
 
-public abstract class Module {
+public abstract class Module implements com.lukflug.panelstudio.settings.KeybindSetting,Toggleable {
     protected final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final String name;
@@ -108,6 +115,12 @@ public abstract class Module {
         Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
+    
+    protected ColorSetting registerColor(String name, String description, boolean rainbowEnabled, boolean alphaEnabled, Color value, boolean rainbow) {
+        ColorSetting setting = new ColorSetting(value, rainbow, name, rainbowEnabled, alphaEnabled, description, this);
+        Rhodium.INSTANCE.settingManager.addSetting(setting);
+        return setting;
+    }
 
     protected DoubleSetting registerDouble(String name, String description, double value, double min, double max, boolean isLimited) {
         DoubleSetting setting = new DoubleSetting(value, name, description, this, min, max, isLimited);
@@ -132,4 +145,24 @@ public abstract class Module {
         Rhodium.INSTANCE.settingManager.addSetting(setting);
         return setting;
     }
+    
+    @Override
+	public int getKey() {
+		return bind;
+	}
+
+	@Override
+	public String getKeyName() {
+		return KeybindSetting.getKeyName(bind);
+	}
+
+	@Override
+	public void setKey(int key) {
+		this.bind=key;
+	}
+
+	@Override
+	public boolean isOn() {
+		return enabled;
+	}
 }
