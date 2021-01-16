@@ -1,9 +1,10 @@
 package dev.rhodium.client.module;
 
-import dev.rhodium.Rhodium;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import dev.rhodium.Rhodium;
+import dev.rhodium.client.module.render.ClickGUIModule;
 
 /**
  * @author Hoosiers 12/06/2020
@@ -58,7 +59,7 @@ public class ModuleManager {
 
     public ModuleManager() {
         modules = new ArrayList<>();
-
+        modules.add(new ClickGUIModule());
         Rhodium.LOGGER.info("Loaded ModuleManager!");
     }
 }

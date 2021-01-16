@@ -9,5 +9,6 @@ public enum Type {
     DOUBLE,
     ENUM,
     INTEGER,
-    KEYBIND
+    KEYBIND,
+    COLOR
 }
