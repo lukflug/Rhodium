@@ -14,8 +14,11 @@ group = project.maven_group
 
 repositories
 {
-    maven
-    {
+	maven {
+		name = "jitpack.io"
+		url = "https://jitpack.io"
+	}
+    maven {
 		name = 'lukflug'
 		url = 'https://lukflug.github.io/maven'
 	}
@@ -27,6 +30,7 @@ dependencies
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	compile "com.github.ZeroMemes:Alpine:1.9"
 	compile('com.lukflug:panelstudio:0.1.7')
 	compile('com.lukflug:panelstudio-mc16:0.1.7')
 }
@@ -61,8 +65,9 @@ shadowJar
 {
 	dependencies
 	{
-		include(dependency('com.lukflug:panelstudio'))
-		include(dependency('com.lukflug:panelstudio-mc16'))
+		include('com.lukflug:panelstudio')
+		include('com.lukflug:panelstudio-mc16')
+		include('com.github.ZeroMemes:Alpine')
 	}
 	classifier = 'shadow'
 }
