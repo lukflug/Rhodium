@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import dev.rhodium.Rhodium;
+import dev.rhodium.client.module.movement.SafeWalk;
 import dev.rhodium.client.module.render.ClickGUIModule;
 
 /**
@@ -60,6 +61,7 @@ public class ModuleManager {
     public ModuleManager() {
         modules = new ArrayList<>();
         modules.add(new ClickGUIModule());
+        modules.add(new SafeWalk());
         Rhodium.LOGGER.info("Loaded ModuleManager!");
     }
 }

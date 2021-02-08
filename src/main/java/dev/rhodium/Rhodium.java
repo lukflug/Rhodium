@@ -1,5 +1,11 @@
 package dev.rhodium;
 
+import dev.rhodium.backend.event.events.ClipAtLedgeEvent;
+import dev.rhodium.backend.event.events.TickEvent;
+import me.zero.alpine.bus.EventBus;
+import me.zero.alpine.bus.EventManager;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -25,6 +31,7 @@ public class Rhodium implements ModInitializer {
 
     public static Rhodium INSTANCE;
     public static final Logger LOGGER = LogManager.getLogger(modName);
+    public static final EventBus EVENTBUS = new EventManager();
 
     public Rhodium() {
         INSTANCE = this;
@@ -35,6 +42,7 @@ public class Rhodium implements ModInitializer {
     public CommandManager commandManager;
     public RhodiumGUI clickGui;
 
+
     @Override
     public void onInitialize() {
         LOGGER.info("Starting up " + modName + " " + modVersion + "!");
@@ -43,10 +51,9 @@ public class Rhodium implements ModInitializer {
         moduleManager = new ModuleManager();
         commandManager = new CommandManager();
         clickGui = new RhodiumGUI();
-        // TODO Temporary code to bind GUI, remove when event system is done
-        KeyBinding keyBinding=KeyBindingHelper.registerKeyBinding(new KeyBinding("key.rhodium.gui",InputUtil.Type.KEYSYM,GLFW.GLFW_KEY_O,"categoy.rhodium.client"));
+        KeyBinding clickGuiKeyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.rhodium.gui",InputUtil.Type.KEYSYM,GLFW.GLFW_KEY_O,"categoy.rhodium.client"));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-        	if (keyBinding.wasPressed()) MinecraftClient.getInstance().openScreen(clickGui);
+            if (keyBinding.wasPressed()) MinecraftClient.getInstance().openScreen(clickGui);
         });
     }
 }
