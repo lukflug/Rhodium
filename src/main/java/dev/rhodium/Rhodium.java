@@ -53,7 +53,7 @@ public class Rhodium implements ModInitializer {
         clickGui = new RhodiumGUI();
         KeyBinding clickGuiKeyBind = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.rhodium.gui",InputUtil.Type.KEYSYM,GLFW.GLFW_KEY_O,"categoy.rhodium.client"));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (keyBinding.wasPressed()) MinecraftClient.getInstance().openScreen(clickGui);
+            if (clickGuiKeyBind.wasPressed()) MinecraftClient.getInstance().openScreen(clickGui);
         });
     }
 }
