@@ -10,7 +10,7 @@ import net.minecraft.text.TranslatableText;
  * @author Hoosiers 12/07/2020
  */
 
-public class KeybindSetting extends Setting<Integer> implements com.lukflug.panelstudio.settings.KeybindSetting {
+public class KeybindSetting extends Setting<Integer> /*implements com.lukflug.panelstudio.settings.KeybindSetting*/ {
     private int key;
     private final int defaultKey;
 
@@ -33,10 +33,10 @@ public class KeybindSetting extends Setting<Integer> implements com.lukflug.pane
         return this.defaultKey;
     }
 
-	@Override
+	/*@Override
 	public String getKeyName() {
 		return getKeyName(key);
-	}
+	}*/
 	
 	public static String getKeyName (int key) {
 		String translationKey=InputUtil.Type.KEYSYM.createFromCode(key).getTranslationKey();

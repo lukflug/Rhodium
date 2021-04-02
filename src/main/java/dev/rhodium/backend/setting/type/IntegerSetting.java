@@ -1,7 +1,5 @@
 package dev.rhodium.backend.setting.type;
 
-import com.lukflug.panelstudio.settings.NumberSetting;
-
 import dev.rhodium.backend.setting.Setting;
 import dev.rhodium.backend.setting.Type;
 import dev.rhodium.client.module.Module;
@@ -10,7 +8,7 @@ import dev.rhodium.client.module.Module;
  * @author Hoosiers 12/07/2020
  */
 
-public class IntegerSetting extends Setting<Integer> implements NumberSetting {
+public class IntegerSetting extends Setting<Integer> /*implements NumberSetting*/ {
     private final int min;
     private final int max;
     private final boolean isLimited;
@@ -35,7 +33,7 @@ public class IntegerSetting extends Setting<Integer> implements NumberSetting {
         return this.isLimited;
     }
 
-	@Override
+	/*@Override
 	public double getMaximumValue() {
 		return max;
 	}
@@ -58,5 +56,5 @@ public class IntegerSetting extends Setting<Integer> implements NumberSetting {
 	@Override
 	public void setNumber(double value) {
 		setValue((int)Math.round(value));
-	}
+	}*/
 }

@@ -8,17 +8,17 @@ import dev.rhodium.client.module.Module;
  * @author Hoosiers 12/07/2020
  */
 
-public class EnumSetting<T extends Enum<T>> extends Setting<T> implements com.lukflug.panelstudio.settings.EnumSetting {
+public class EnumSetting<T extends Enum<T>> extends Setting<T> /*implements com.lukflug.panelstudio.settings.EnumSetting*/ {
     public EnumSetting(T value, String name, String description, Module module) {
         super(value, name, description, module, Type.ENUM);
     }
 
-	@Override
+	//@Override
 	public String getValueName() {
 		return getValue().toString();
 	}
 
-	@Override
+	//@Override
 	public void increment() {
 		T[] array=getValue().getDeclaringClass().getEnumConstants();
 		int index=getValue().ordinal()+1;

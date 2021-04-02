@@ -6,7 +6,7 @@ import dev.rhodium.backend.setting.Setting;
 import dev.rhodium.backend.setting.Type;
 import dev.rhodium.client.module.Module;
 
-public class ColorSetting extends Setting<Color> implements com.lukflug.panelstudio.settings.ColorSetting {
+public class ColorSetting extends Setting<Color> /*implements com.lukflug.panelstudio.settings.ColorSetting*/ {
 	public final boolean rainbowEnabled,alphaEnabled;
 	private boolean rainbow;
 	
@@ -23,17 +23,17 @@ public class ColorSetting extends Setting<Color> implements com.lukflug.panelstu
 		return super.getValue();
 	}
 
-	@Override
+	//@Override
 	public Color getColor() {
 		return super.getValue();
 	}
 
-	@Override
+	//@Override
 	public boolean getRainbow() {
 		return rainbow;
 	}
 
-	@Override
+	//@Override
 	public void setRainbow(boolean value) {
 		rainbow=value;
 	}

@@ -2,8 +2,6 @@ package dev.rhodium.client.module;
 
 import java.awt.Color;
 
-import com.lukflug.panelstudio.settings.Toggleable;
-
 import dev.rhodium.Rhodium;
 import dev.rhodium.backend.setting.type.BooleanSetting;
 import dev.rhodium.backend.setting.type.ColorSetting;
@@ -17,7 +15,7 @@ import net.minecraft.client.MinecraftClient;
  * @author Hoosiers 12/06/2020
  */
 
-public abstract class Module implements com.lukflug.panelstudio.settings.KeybindSetting,Toggleable {
+public abstract class Module /*implements com.lukflug.panelstudio.settings.KeybindSetting,Toggleable*/ {
     protected final MinecraftClient mc = MinecraftClient.getInstance();
 
     private final String name;
@@ -146,7 +144,7 @@ public abstract class Module implements com.lukflug.panelstudio.settings.Keybind
         return setting;
     }
     
-    @Override
+    /*@Override
 	public int getKey() {
 		return bind;
 	}
@@ -164,5 +162,5 @@ public abstract class Module implements com.lukflug.panelstudio.settings.Keybind
 	@Override
 	public boolean isOn() {
 		return enabled;
-	}
+	}*/
 }
